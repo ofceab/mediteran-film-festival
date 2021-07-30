@@ -3,7 +3,6 @@ import 'package:mediteran_film_festival/home/home_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home/home_widget.dart';
 import 'favorited/favorited_widget.dart';
-import 'flutter_flow/flutter_flow_theme.dart';
 
 void main() {
   runApp(MyApp());

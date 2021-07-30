@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../movie_info/movie_info_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key key}) : super(key: key);
@@ -86,7 +85,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     width: 50,
                     height: 50,
                     child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.primaryColor,
+                      backgroundColor: FlutterFlowTheme.primaryColor,
                     ),
                   ),
                 );
