@@ -8,7 +8,7 @@ main() {
 
     final movies = await moviesRepository.getMovies();
 
-    // Display id of movies got
+    // Display id of movies fetched
     movies.forEach((element) {
       print(element.iD);
     });
