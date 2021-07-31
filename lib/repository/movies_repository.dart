@@ -9,8 +9,7 @@ import 'package:http/http.dart' as http;
 /// We will be using the join endpoint [https://www.mff.ba/api/program?godina=2021&kategorija=1]
 
 class MoviesRepository {
-  static String _apiEndpoint =
-      'https://www.mff.ba/api/program?godina=2021&kategorija=1';
+  static String _apiEndpoint = 'https://movies-api-v1.herokuapp.com/api/movies';
 
   static MoviesRepository _instance = MoviesRepository._();
 

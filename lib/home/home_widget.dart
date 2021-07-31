@@ -1,6 +1,6 @@
-import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+import 'package:mediteran_film_festival/flutter_flow/flutter_flow_theme.dart';
+import 'package:mediteran_film_festival/models/movie.dart';
+import 'package:mediteran_film_festival/repository/movies_repository.dart';
 import '../movie_info/movie_info_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final MoviesRepository _moviesRepository = MoviesRepository.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +76,8 @@ class _HomeWidgetState extends State<HomeWidget> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: FutureBuilder<dynamic>(
-            future: prijavniceCall(),
+          child: FutureBuilder<List<Movie>>(
+            future: this._moviesRepository.getMovies(),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
@@ -90,21 +91,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                 );
               }
-              final listViewPrijavniceResponse = snapshot.data;
               return Builder(
                 builder: (context) {
-                  final prijavnice =
-                      (getJsonField(listViewPrijavniceResponse, r'$.resource')
-                                  ?.toList() ??
-                              [])
-                          .take(20)
-                          .toList();
                   return ListView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.vertical,
-                    itemCount: prijavnice.length,
+                    itemCount: snapshot.data.length,
                     itemBuilder: (context, prijavniceIndex) {
-                      final prijavniceItem = prijavnice[prijavniceIndex];
+                      // final prijavniceItem = prijavnice[prijavniceIndex];
                       return Padding(
                         padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
                         child: InkWell(
@@ -156,9 +150,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           MainAxisAlignment.start,
                                       children: [
                                         AutoSizeText(
-                                          getJsonField(prijavniceItem,
-                                                  r'$.NazivFilma')
-                                              .toString(),
+                                          snapshot
+                                              .data[prijavniceIndex].nazivFilma,
                                           style:
                                               FlutterFlowTheme.title1.override(
                                             fontFamily: 'Poppins',
